@@ -5,7 +5,7 @@ public class Lobo extends Jugador{
 
     public void loboVota(Jugador presa){
 	if (presa == null)
-	    thorw new IllegalArgumentException("El jugador debe de existir");
+	    throw new IllegalArgumentException("El jugador debe de existir");
 	if (presa == this)
 	    return;
 	
