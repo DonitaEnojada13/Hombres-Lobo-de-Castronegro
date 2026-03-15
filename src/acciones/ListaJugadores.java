@@ -1,22 +1,12 @@
 package acciones;
 import jugadores.*;
+
 //Por el momento, veamos como se comporta sin genericos
 public class ListaJugadores {
     private Nodo cabeza;
     private Nodo rabo;
     private int jugadores;
 
-    private class Nodo{
-	private Jugador jugador;
-	private Nodo siguiente;
-	private Nodo anterior;
-
-	private Nodo(Jugador nJugador){
-	    jugador = nJugador;
-	}
-    }
-
-    
     public int getJugadores(){
 	return jugadores;
     }
@@ -47,17 +37,15 @@ public class ListaJugadores {
     //Que pasa si hay dos jugadores llamados de la misma manera?
     private boolean buscaNombre(String porBuscar){
 
-	if (porBuscar == null)
-	    throw new IllegalArgumentException("No puedes introducir Strings nulos");
+		if (porBuscar == null) throw new IllegalArgumentException("No puedes introducir Strings nulos");
 
-	if (esVacia())
-	    return false;
+		if (esVacia()) return false;
 
-	String s = porBuscar.trim().toUpperCase();
+		String s = porBuscar.trim().toUpperCase();
 	
-	if (s.isEmpty())
-	    return false; // Aqui habria que hacer algo para evitar los nombres vacios, no?
-	Nodo aux = cabeza;
+		if (s.isEmpty()) return false; // Aqui habria que hacer algo para evitar los nombres vacios, no?
+		
+		Nodo aux = cabeza;
 
 	while(aux != null) {
 	    if(aux.jugador.getNombre().equalsIgnoreCase(s))
@@ -66,4 +54,18 @@ public class ListaJugadores {
 	}
 	return false;
     }
+
+	//Clase del nodo
+	private class Nodo{
+	private Jugador jugador;
+	private Nodo siguiente;
+	private Nodo anterior;
+
+	private Nodo(Jugador nJugador){
+	    jugador = nJugador;
+		this.siguiente = null;
+		this.anterior = null;
+	}
+    }
+
 }

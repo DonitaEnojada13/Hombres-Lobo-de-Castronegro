@@ -2,7 +2,7 @@ package jugadores;
 import acciones.*;
 public class Flautista extends Jugador implements AccionDeNoche{
     public Flautista(String name){
-	super(name, 'F');
+		super(name, 'F');
     }
 
     public void accionNocturna(){
