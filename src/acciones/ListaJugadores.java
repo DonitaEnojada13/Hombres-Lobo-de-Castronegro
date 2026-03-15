@@ -65,4 +65,36 @@ public class ListaJugadores {
 	}
 	return false;
     }
+
+    public void quitaPorNombre(String nombre) {
+	if(nombre == null)
+	    throw new IllegalArgumentException("El nombre no debe de ser null");
+	if(esVacia())
+	    return;
+
+	String s = nombre.trim().toUpperCase();
+	Nodo aux = cabeza;
+
+	while (aux != null) {
+	    if (aux.jugador.getNombre().equalsIgnoreCase(s)){
+
+		if (jugadores == 1) {
+		    cabeza = null;
+		    rabo = null;
+		} else if (aux == cabeza) {
+		    cabeza = cabeza.siguiente;
+		    cabeza.anterior = null;
+		} else if (aux == rabo) {
+		    rabo = rabo.anterior;
+		    rabo.siguiente = null;
+		} else {
+		    aux.anterior.siguiente = aux.siguiente;
+		    aux.siguiente.anterior = aux.anterior;
+		}
+		jugadores--;
+		return;
+	    }
+	    aux = aux.siguiente;
+	}
+    }
 }
