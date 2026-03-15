@@ -7,7 +7,7 @@ public class Cazador extends Jugador{
     public void oneShot(Jugador objetivo){
 	if (objetivo == null)
 	    throw new IllegalArgumentException("El jugador debe de existir");
-	if(bala = false)
+	if(bala == false)
 	    return;
 	if (objetivo == this)
 	    return;

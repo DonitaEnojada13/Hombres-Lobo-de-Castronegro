@@ -1,8 +1,12 @@
-public class Flautista extends Jugador{
+public class Flautista extends Jugador implements AccionDeNoche{
     public Flautista(String name){
 	super(name, 'F');
     }
-    public void embrujar(Jugador objetivo){
+
+    public void accionNocturna(){
+	return;
+    }
+    private void hechizar(Jugador objetivo){
 	if (objetivo == null)
 	    throw new IllegalArgumentException("El jugador debe de existir");
 	if (this == objetivo){

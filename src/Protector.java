@@ -1,13 +1,16 @@
-public class Protector extends Jugador{
+public class Protector extends Jugador implements AccionDeNoche{
     private Jugador fueProtegido;
     
     public Protector(String name){
 	super(name, 'P');
 	this.fueProtegido = null;
     }
+
+    public void accionNocturna(){
+	return;
+    }
     
-    
-    public void protect(Jugador objetivo){
+    private void protect(Jugador objetivo){
 	if (objetivo == null)
 	    throw new IllegalArgumentException("El jugador debe de existir");
 	if (!objetivo.getVivo()){

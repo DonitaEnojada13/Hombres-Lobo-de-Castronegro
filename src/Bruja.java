@@ -1,4 +1,4 @@
-public class Bruja extends Jugador{
+public class Bruja extends Jugador implements AccionDeNoche {
 
     private boolean pCura;
     private boolean pMata;
@@ -27,9 +27,14 @@ public class Bruja extends Jugador{
     public void setpMata(boolean nMata){
 	this.pMata = nMata;
     }
-    
 
-    public void cura(Jugador herido){
+    public void accionNocturna(){
+	return;
+    }
+
+    // Planeo convertir estos metodos a privados, por el encapsulamiento, asi nadie podra actiarlos
+    // fuera del turno de la bruja
+    private void cura(Jugador herido){
 	
 	if (herido == null)
 	    throw new IllegalArgumentException("El jugador debe de existir");
@@ -43,7 +48,7 @@ public class Bruja extends Jugador{
 	}
     }
 
-    public void mata(Jugador objetivo){
+    private void mata(Jugador objetivo){
 	
 	if (objetivo == null)
 	    throw new IllegalArgumentException("El jugador debe de existir");

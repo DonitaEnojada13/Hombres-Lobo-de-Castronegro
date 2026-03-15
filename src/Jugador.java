@@ -5,7 +5,7 @@ public class Jugador{
     private boolean vivo;
     private boolean hechizado;
     private boolean proteccion;
-    private int votos;
+    //  private int votos;
     
 
     public Jugador(String nombre, char rol){
@@ -32,10 +32,7 @@ public class Jugador{
     public boolean getProteccion(){
 	return proteccion;
     }
-    public int getVotos(){
-	return votos;
-    }
-
+    
     //setters 
 
     public void setNombre(String nNombre){
@@ -52,28 +49,5 @@ public class Jugador{
     }
     public void setProteccion(boolean nProtec){
 	proteccion = nProtec;
-    }
-    public void setVotos(int nVotos){
-	votos = nVotos;
-    }
-
-
-    public void votaPor(Jugador votado){
-	if (votado == null)
-	    throw new IllegalArgumentException("El jugador debe de existir");
-	if (!this.getVivo()){
-	    System.out.println("Los muertos no votan, espabila");
-	    return;
-	}
-	if (!votado.getVivo()){
-	    System.out.println("No puedes votar a un muerto, espabila");
-	    return;
-	}
-	
-	int cantidad = votado.getVotos() + 1;
-	votado.setVotos(cantidad);
-	return;
-    }
-
-    
+    }    
 }
