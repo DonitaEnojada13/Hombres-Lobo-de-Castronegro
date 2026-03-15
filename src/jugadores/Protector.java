@@ -1,3 +1,5 @@
+package jugadores; 
+import acciones.*;
 public class Protector extends Jugador implements AccionDeNoche{
     private Jugador fueProtegido;
     

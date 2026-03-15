@@ -1,3 +1,5 @@
+package jugadores; 
+import acciones.*;
 public class Bruja extends Jugador implements AccionDeNoche {
 
     private boolean pCura;

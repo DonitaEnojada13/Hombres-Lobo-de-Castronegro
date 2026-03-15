@@ -1,3 +1,4 @@
+package jugadores; 
 public class Jugador{
     
     private String nombre;
