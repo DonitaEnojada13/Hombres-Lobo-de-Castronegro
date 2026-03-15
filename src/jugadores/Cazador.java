@@ -1,3 +1,4 @@
+package jugadores;
 public class Cazador extends Jugador{
     private boolean bala;
     public Cazador(String nombre){

@@ -1,3 +1,5 @@
+package jugadores;
+import acciones.*;
 public class Lobo extends Jugador implements AccionDeNoche{
     public Lobo(String name){
 	super(name, 'L');

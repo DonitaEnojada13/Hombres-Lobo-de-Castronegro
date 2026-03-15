@@ -1,3 +1,5 @@
+package jugadores;
+import acciones.*;
 public class Vidente extends Jugador implements AccionDeNoche{
     public Vidente(String nombre){
 	super(nombre, 'V');

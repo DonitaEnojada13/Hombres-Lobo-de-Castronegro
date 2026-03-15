@@ -1,4 +1,5 @@
-
+package acciones;
+import jugadores.*;
 //Por el momento, veamos como se comporta sin genericos
 public class ListaJugadores {
     private Nodo cabeza;
