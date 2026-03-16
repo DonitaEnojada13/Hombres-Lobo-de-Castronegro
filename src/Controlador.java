@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.util.Scanner;
 
 public class Controlador{
 
@@ -15,20 +16,11 @@ public class Controlador{
     }
 
     public void empiezaPartida() {
+	return;
     }
 
     private void armarJuego(int numJugadores) {
-	
-    }
-
-    private String[] arregloNom(int num) {
-	// La 'O' grandota lineal, ajua
-	String[] nombres = new String[num];
-
-	for (int i = 0; i < num; i++){
-	    nombres[i] = pideNom();
-	}
-	return nombres;
+	return;
     }
 
     // Al parecer, desordenar un arreglo es algo  poquitin mas complicado que ordenarlo
@@ -55,9 +47,7 @@ public class Controlador{
     private char[] arregloRol(int num) {
 	char[] roles = new char[num];
 	int numLobos = num/4;
-	
-	
-	
+	return roles;
     }
 
     private String pideNom(){
@@ -90,7 +80,8 @@ public class Controlador{
 		
 		if(numJugadores < 8 || numJugadores > 20){
 		    
-		    System.out.println("Espabila, ese numero no esta contemplado")}
+		    System.out.println("Espabila, ese numero no esta contemplado");
+		}
 	    } else {
 		System.out.println("Eso no es un numero, espabila");
 		sc.next();
