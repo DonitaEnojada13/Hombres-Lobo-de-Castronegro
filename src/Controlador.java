@@ -16,11 +16,44 @@ public class Controlador{
     }
 
     public void empiezaPartida() {
-	return;
+	int numero = pideNum();
+
+	armarJuego(numero);
+	
     }
 
     private void armarJuego(int numJugadores) {
-	return;
+	char[] rolesAleatorios = arregloRol(numJugadores);
+	desArreglo(rolesAleatorios);
+
+	for(int i = 0; i < rolesAleatorios.length; i++) {
+	    String s = pideNom();
+	    char r = rolesAleatorios[i];
+	    lista.meteJugador(creaJugador(r,s));
+	}
+    }
+    private Jugador creaJugador(char r, String s) {
+	 switch(r) {
+	    case 'L':
+		return new Lobo(s);
+	    case 'B':
+		return new Bruja(s);
+	    case 'P':
+	        return new Protector(s);
+	    case 'F':
+		return new Flautista(s);
+	    case 'T':
+		return new Tonto(s);
+	    case 'A':
+		return new Aldeano(s);
+	    case 'C':
+		return new Cazador(s);
+	    case 'V':
+		return new Vidente(s);
+	 default:
+	    System.out.println("Ah canijote, como llego eso aqui? (Toma, eres un aldeano)");
+	    return new Aldeano(s);
+	    }
     }
 
     // Al parecer, desordenar un arreglo es algo  poquitin mas complicado que ordenarlo
