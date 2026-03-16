@@ -35,9 +35,31 @@ public class Bruja extends Jugador implements AccionDeNoche {
 		return;
     }
 
+	@Override
+	public String obtenerMensajeDespertar(){
+		return "La bruja despierta y puede curar o matar a alguién";
+	}
 
-    // Planeo convertir estos metodos a privados, por el encapsulamiento, asi nadie podra actiarlos
-    // fuera del turno de la bruja
+	@Override
+	public void ejecutarAcciónDeNoche(Jugador... objetivos){
+		if(objetivos.length > 0){
+			Jugador aCurar = objetivos[0];
+
+			if(aCurar != null && hasCura()){
+				cura(aCurar);
+			}
+		}
+
+		if(objetivos.length > 1){
+			Jugador aMatar = objetivos[1];
+			
+			if(aMatar != null && hasMata()){
+				mata(aMatar);
+			}
+		}
+	}
+
+	
     private void cura(Jugador herido){
 		if (herido == null)
 			throw new IllegalArgumentException("El jugador debe de existir");

@@ -1,8 +1,7 @@
 package acciones;
-import jugadores.*;
-
+import jugadores.Jugador;
 public interface AccionDeDia{
 
-    public void votaciones();
+    public Jugador votaciones();
         
 }

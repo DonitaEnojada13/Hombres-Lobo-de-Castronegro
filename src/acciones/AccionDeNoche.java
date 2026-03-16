@@ -1,7 +1,9 @@
 package acciones;
-import jugadores.*;
+import jugadores.Jugador;
 public interface AccionDeNoche{
 
-    public void ();
+    public String obtenerMensajeDespertar();
+
+    public void  ejecutarAcciónDeNoche(Jugador... objetivos);
     
 }
