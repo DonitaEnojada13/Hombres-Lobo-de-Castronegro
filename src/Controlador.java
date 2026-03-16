@@ -46,7 +46,24 @@ public class Controlador{
     }
     private char[] arregloRol(int num) {
 	char[] roles = new char[num];
-	int numLobos = num/4;
+	int numLobos = num/5;
+	int i = 0;
+
+	while(i < numLobos) {
+	    roles[i] = 'L';
+	    i++;
+	}
+	roles[i++] = 'P';
+	roles[i++] = 'F';
+	roles[i++] = 'B';
+	roles[i++] = 'V';
+	roles[i++] = 'C';
+	roles[i++] = 'T';
+
+	while(i < roles.length) {
+	    roles[i] = 'A';
+	    i++;
+	}
 	return roles;
     }
 
