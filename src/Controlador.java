@@ -17,20 +17,7 @@ public class Controlador{
 	victimaLobo = null;
     }
 
-    // private Conteo contador(){
-    //	Conteo alfa = new Conteo();
-    //	Nodo aux = lista.cabeza;
-    //
-    //	while(aux != null){
-    //	    Jugador j = aux.jugador;
-    //
-    //	    if(j.getVivo()){
-    //	    }
-    //		}
-    //  }
-    // Mas abajo cree una clase interna llamada conteo, esto porque no me gustaba la idea de
-    // usar arreglos orepetir muchos metodos para obtener el numero de elementos jajaja
-
+   
     public void empiezaPartida() {
 	int numero = pideNum();
 	armarJuego(numero);
@@ -155,43 +142,5 @@ public class Controlador{
 	}
 
 	return numJugadores;
-    }
-
-     private class Conteo {
-	private int lobos;
-	private int vivos;
-	private int humanos;
-	private int hechizados;
-
-	public Conteo() {
-        this.lobos = 0;
-        this.humanos = 0;
-        this.hechizados = 0;
-        this.vivos = 0;
-	}
-	public int getLobos(){
-	    return lobos;
-	}
-	public int getHumanos(){
-	    return humanos;
-	}
-	public int getHechizados(){
-	    return hechizados;
-	}
-	public int vivos(){
-	    return hechizados;
-	}
-	public void setLobos(int nL){
-	    this.lobos = nL;
-	}
-	public void setHumanos(int nH){
-	    this.humanos = nH;
-	}
-	public void setHechizados(int nHechi){
-	    this.hechizados = nHechi;
-	}
-	public void setVivos(int nV){
-	    this.vivos = nV;
-	}
     }
 }
