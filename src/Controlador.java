@@ -1,5 +1,7 @@
 import jugadores.*;
 import acciones.*;
+import estructuras.*;
+import java.util.Scanner;
 import java.util.Random;
 public class Controlador{
 
