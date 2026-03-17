@@ -8,7 +8,19 @@ public class Protector extends Jugador implements AccionDeNoche{
 		this.fueProtegido = null;
     }
 
-    public void accionNocturna(){
+	public String obtenerMensajeDespertar(){
+		return "El protector despierta y tiene la posibilidad de proteger a un jugador o a sí mismo";
+	}
+
+    public void accionNocturna(Jugador... objetivo){
+
+		if(objetivo == null || objetivo.length == 0) return;
+
+		for(Jugador protegido : objetivo){	
+				protect(protegido);
+		}
+		
+
 		return;
     }
     
@@ -27,5 +39,4 @@ public class Protector extends Jugador implements AccionDeNoche{
 			this.fueProtegido = objetivo;
 		}
 
-    // Falta hacer un reset para quitar la proteccion 
 }

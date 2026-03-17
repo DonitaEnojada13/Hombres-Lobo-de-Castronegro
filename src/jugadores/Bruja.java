@@ -41,7 +41,7 @@ public class Bruja extends Jugador implements AccionDeNoche {
 	}
 
 	@Override
-	public void ejecutarAcciónDeNoche(Jugador... objetivos){
+	public void accionNocturna(Jugador... objetivos){
 		if(objetivos.length > 0){
 			Jugador aCurar = objetivos[0];
 
