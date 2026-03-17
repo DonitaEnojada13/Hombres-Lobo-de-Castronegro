@@ -1,4 +1,4 @@
-package jugadores; 
+package jugadores;
 public class Jugador{
     
     private String nombre;
@@ -10,45 +10,45 @@ public class Jugador{
     
 
     public Jugador(String nombre, char rol){
-	this.nombre = nombre;
-	this.rol = rol;
-	this.vivo = true;
+        this.nombre = nombre;
+        this.rol = rol;
+        this.vivo = true;
     }
 
 
     //Getters
     
     public String getNombre(){
-	return nombre;
+	    return nombre;
     }
     public char getRol(){
-	return rol;
+	    return rol;
     }
     public boolean getVivo(){
-	return vivo;
+	    return vivo;
     }
     public boolean getHechizado(){
-	return hechizado;
+	    return hechizado;
     }
     public boolean getProteccion(){
-	return proteccion;
+	    return proteccion;
     }
     
     //setters 
 
     public void setNombre(String nNombre){
-	nombre = nNombre;
+	    nombre = nNombre;
     }
     public void setRol(char nRol){
-	rol = nRol;
+	    rol = nRol;
     }
     public void setVivo(boolean nVivo){
-	vivo = nVivo;
+	    vivo = nVivo;
     }
     public void setHechizado(boolean nHechi){
-	hechizado = nHechi;
+	    hechizado = nHechi;
     }
     public void setProteccion(boolean nProtec){
-	proteccion = nProtec;
+	    proteccion = nProtec;
     }    
 }

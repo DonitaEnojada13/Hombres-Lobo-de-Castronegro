@@ -1,4 +1,6 @@
 package acciones;
 public interface AccionDeDia{
-    void accionDiurna();    
+
+    public void votaciones();
+        
 }

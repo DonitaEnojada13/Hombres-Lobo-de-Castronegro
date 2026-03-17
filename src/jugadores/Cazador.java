@@ -1,9 +1,9 @@
-package jugadores; 
+package jugadores;
 public class Cazador extends Jugador{
     private boolean bala;
     public Cazador(String nombre){
-	super(nombre, 'C');
-	this.bala = true;
+		super(nombre, 'C');
+		this.bala = true;
     }
     public void oneShot(Jugador objetivo){
 	if (objetivo == null)
@@ -16,6 +16,6 @@ public class Cazador extends Jugador{
 	    return;
 
 	objetivo.setVivo(false);
-	bala = false;
+		bala = false;
 	}
 }

@@ -1,6 +1,6 @@
+import jugadores.*;
+import acciones.*;
 import java.util.Random;
-import java.util.Scanner;
-
 public class Controlador{
 
     // En teoria, el mvc trabaja con el modelo, en este caso, este esta compuesto por
