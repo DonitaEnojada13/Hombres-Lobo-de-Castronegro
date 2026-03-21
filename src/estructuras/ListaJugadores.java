@@ -100,6 +100,15 @@ public class ListaJugadores implements Iterable<Jugador> {
 	}
 	return c;
     }
+    
+    public Jugador rolVivo(char rolBuscado) {
+    for (Jugador j : this) {
+	if (j.getRol() == rolBuscado && j.getVivo()) {
+	    return j;
+        }
+    }
+    return null;
+}
 
     public void meteJugador(Jugador participante){
 		if (participante == null) throw new IllegalArgumentException("El jugador debe de existir");

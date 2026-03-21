@@ -9,11 +9,12 @@ public class Vidente extends Jugador implements AccionDeNoche{
       return "El vidente despierta y tiene el chance de ver el rol de alguno de los jugadores";
     }
 
-    public void accionNocturna(Jugador... objetivos){
-      if(objetivos == null || objetivos.length == 0) return;
-      for(Jugador rolVer : objetivos){
-        clarividencia(rolVer);
-      }
+    @Override
+    public String accionNocturna(Jugador... objetivos){
+      if(objetivos == null || objetivos.length == 0)
+	  return "No has elegido a nadie";
+      
+      return clarividencia(objetivos[0]); 
     }
     
     private String clarividencia(Jugador objetivo){

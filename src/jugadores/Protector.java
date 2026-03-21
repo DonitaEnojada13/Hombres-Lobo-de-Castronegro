@@ -8,35 +8,33 @@ public class Protector extends Jugador implements AccionDeNoche{
 		this.fueProtegido = null;
     }
 
-	public String obtenerMensajeDespertar(){
-		return "El protector despierta y tiene la posibilidad de proteger a un jugador o a sí mismo";
-	}
-
-    public void accionNocturna(Jugador... objetivo){
-
-		if(objetivo == null || objetivo.length == 0) return;
-
-		for(Jugador protegido : objetivo){	
-				protect(protegido);
-		}
-		
-
-		return;
+    public Jugador getFueProtegido() {
+	return fueProtegido;
     }
     
-    private void protect(Jugador objetivo){
-		if (objetivo == null)
-			throw new IllegalArgumentException("El jugador debe de existir");
-		if (!objetivo.getVivo()){
-			System.out.println("Espabila, los muertos no necesitan proteccion");
-			return;
-		}
-		if (objetivo == fueProtegido){
-			System.out.println("No puedes proteger dos veces a la misma persona");
-			return;
-		}
-		objetivo.setProteccion(true);
-			this.fueProtegido = objetivo;
-		}
+    @Override
+    public String obtenerMensajeDespertar(){
+	return "El protector despierta y tiene la posibilidad de proteger a un jugador o a sí mismo";
+    }
 
+    public String accionNocturna(Jugador... objetivo){
+	if(objetivo == null || objetivo.length == 0)
+	    return "No seleccionaste a nadie.";
+	
+	Jugador seleccionado = objetivo[0];
+	
+        if (seleccionado == fueProtegido)
+	    return "No puedes proteger a la misma persona dos veces seguidas.";
+	
+	protect(seleccionado);
+        return "Has protegido a " + seleccionado.getNombre() + " Estará a salvo esta noche.";
+    }
+    
+    private void protect(Jugador objetivo) {
+    
+        objetivo.setProteccion(true); 
+    
+        this.fueProtegido = objetivo;
+    }
+    
 }

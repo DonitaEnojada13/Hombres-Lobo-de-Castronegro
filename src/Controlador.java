@@ -28,8 +28,55 @@ public class Controlador{
 	
     }
 
-    private void cicloNoche(){
-	System.out.println("La noche se cierne sobre la aldea");
+    private void cicloNoche() {
+    }
+
+    private void turnoProtector() {
+	Jugador j = lista.rolVivo('P');
+	if (j != null){
+	    Protector p = (Protector) j;
+	    System.out.println(p.obtenerMensajeDespertar());
+
+	    Jugador protegido = null;
+	    
+	    while(protegido == null){
+		String pJugador = pideNom();
+		protegido = lista.obtenerPorNombre(pJugador);
+	       
+		if(protegido == null) {
+		    System.out.println("Ese nombre no existe en la aldea. Inténtalo de nuevo.");
+		} else if (protegido == p.getFueProtegido()) {
+		    System.out.println("No puedes proteger a la misma persona dos noches seguidas.");
+		    protegido = null;
+		}
+	    }
+
+	    String resultado = p.accionNocturna(protegido);
+	    System.out.println(resultado);
+	    
+	}
+    }
+
+    private void turnoVidente() {
+	Jugador j = lista.rolVivo('V');
+
+	if(j != null){
+	    Vidente v = (Vidente) j;
+	    System.out.println(v.obtenerMensajeDespertar());
+	    
+	    Jugador objetivo = null;
+
+	    while(objetivo == null){
+		String nJugador = pideNom();
+		objetivo = lista.obtenerPorNombre(nJugador);
+		
+		if(objetivo == null){
+		    System.out.println("Ese nombre no existe en la aldea. Inténtalo de nuevo.");
+		}
+	    }
+		String rolRevel = v.accionNocturna(objetivo);
+		System.out.println(rolRevel);
+	}
     }
 
     private int estadoDeJuego(Informacion c) {
