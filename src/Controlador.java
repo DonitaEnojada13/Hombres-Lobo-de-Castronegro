@@ -12,6 +12,7 @@ public class Controlador{
     private ListaJugadores lista;
     private Scanner sc;
     private Jugador victimaLobo;
+    private boolean fMuerto;
 
     public Controlador(ListaJugadores nLista) {
 	lista = nLista;
@@ -23,9 +24,92 @@ public class Controlador{
     public void empiezaPartida() {
 	int numero = pideNum();
 	armarJuego(numero);
+
+	
     }
 
-   
+    private void cicloNoche() {
+	for (Jugador j : lista) {
+	    j.setProteccion(false);
+	}
+	turnoProtector();
+	turnoVidente();
+	turnoLobos();
+	turnoBruja();
+
+	if (!fMuerto) {
+	    turnoFlautista();
+	}
+
+    resolverNoche();
+
+    //El metodo de arriba es para hacer todas las impresiones finales
+    
+}
+    }
+
+    private void turnoLobos() {
+    }
+
+    private void turnoProtector() {
+	Jugador j = lista.rolVivo('P');
+	if (j != null){
+	    Protector p = (Protector) j;
+	    System.out.println(p.obtenerMensajeDespertar());
+
+	    Jugador protegido = null;
+	    
+	    while(protegido == null){
+		String pJugador = pideNom();
+		protegido = lista.obtenerPorNombre(pJugador);
+	       
+		if(protegido == null) {
+		    System.out.println("Ese nombre no existe en la aldea. Inténtalo de nuevo.");
+		} else if (protegido == p.getFueProtegido()) {
+		    System.out.println("No puedes proteger a la misma persona dos noches seguidas.");
+		    protegido = null;
+		}
+	    }
+
+	    String resultado = p.accionNocturna(protegido);
+	    System.out.println(resultado);
+	    
+	}
+    }
+
+    private void turnoVidente() {
+	Jugador j = lista.rolVivo('V');
+
+	if(j != null){
+	    Vidente v = (Vidente) j;
+	    System.out.println(v.obtenerMensajeDespertar());
+	    
+	    Jugador objetivo = null;
+
+	    while(objetivo == null){
+		String nJugador = pideNom();
+		objetivo = lista.obtenerPorNombre(nJugador);
+		
+		if(objetivo == null){
+		    System.out.println("Ese nombre no existe en la aldea. Inténtalo de nuevo.");
+		}
+	    }
+		String rolRevel = v.accionNocturna(objetivo);
+		System.out.println(rolRevel);
+	}
+    }
+
+    private int estadoDeJuego(Informacion c) {
+	if (c.getHechi() == c.getVivos()-1 && c.getFlautistaEstado())
+	    return 2;
+	if (c.getLobos() >= c.getHumanos())
+	    return 1;
+	if (c.getLobos() == 0 && !c.getFlautistaEstado())
+	    return 3;
+	return 0;
+	
+    }
+    
     private void armarJuego(int numJugadores) {
 	char[] rolesAleatorios = arregloRol(numJugadores);
 	desArreglo(rolesAleatorios);
