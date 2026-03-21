@@ -22,6 +22,85 @@ public class ListaJugadores implements Iterable<Jugador> {
 		return cabeza == null && rabo == null;
     }
 
+    private class Conteo implements Informacion{
+	
+	private int lobos;
+	private int humanos;
+	private int vivos;
+	private int hechizados;
+	private boolean fVivo;
+
+	public Conteo(){
+	    this.lobos = 0;
+	    this.humanos = 0;
+	    this.vivos = 0;
+	    this.hechizados = 0;
+	}
+	
+	@Override
+	public int getLobos() {
+	    return lobos;
+	}
+	@Override
+	public int getHumanos() {
+	    return humanos;
+	}
+	@Override
+	public int getVivos() {
+	    return vivos;
+	}
+	@Override
+	public int getHechi() {
+	    return hechizados;
+	}
+	@Override
+	public boolean getFlautistaEstado(){
+	    return fVivo;
+	}
+	public void setLobos(int nL){
+	    this.lobos = nL;
+	}
+	public void setHumanos(int nH){
+	    this.humanos = nH;
+	}
+	public void setVivos(int nV){
+	    this.vivos = nV;
+	}
+	public void setHechizo(int nHechi){
+	    this.hechizados = nHechi;
+	}
+	public void setFlautista(boolean nF){
+	    this.fVivo = nF;
+	}
+    }
+
+    public Informacion contador(){
+	Conteo c = new Conteo();
+
+	Nodo aux = cabeza;
+
+	while(aux != null){
+	    if (aux.jugador.getVivo()){
+		c.setVivos(c.getVivos() + 1);
+		
+		if(aux.jugador instanceof Lobo){
+		    c.setLobos(c.getLobos() + 1);
+		} else {
+		    c.setHumanos(c.getHumanos() + 1);
+		}
+		if (aux.jugador.getRol() == 'F'){
+		    c.setFlautista(true);
+		}
+		if (aux.jugador.getHechizado()){
+		    c.setHechizo(c.getHechi() + 1);
+		}
+	    }
+		
+	    aux = aux.siguiente;
+	}
+	return c;
+    }
+
     public void meteJugador(Jugador participante){
 		if (participante == null) throw new IllegalArgumentException("El jugador debe de existir");
 		if(buscaNombre(participante.getNombre())) throw new IllegalArgumentException("Ya existe un jugador con ese nombre");

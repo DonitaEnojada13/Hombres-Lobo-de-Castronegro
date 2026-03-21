@@ -12,6 +12,7 @@ public class Controlador{
     private ListaJugadores lista;
     private Scanner sc;
     private Jugador victimaLobo;
+    private boolean fMuerto;
 
     public Controlador(ListaJugadores nLista) {
 	lista = nLista;
@@ -23,9 +24,25 @@ public class Controlador{
     public void empiezaPartida() {
 	int numero = pideNum();
 	armarJuego(numero);
+
+	
     }
 
-   
+    private void cicloNoche(){
+	System.out.println("La noche se cierne sobre la aldea");
+    }
+
+    private int estadoDeJuego(Informacion c) {
+	if (c.getHechi() == c.getVivos()-1 && c.getFlautistaEstado())
+	    return 2;
+	if (c.getLobos() >= c.getHumanos())
+	    return 1;
+	if (c.getLobos() == 0 && !c.getFlautistaEstado())
+	    return 3;
+	return 0;
+	
+    }
+    
     private void armarJuego(int numJugadores) {
 	char[] rolesAleatorios = arregloRol(numJugadores);
 	desArreglo(rolesAleatorios);
