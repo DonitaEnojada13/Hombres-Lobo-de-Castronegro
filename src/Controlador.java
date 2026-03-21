@@ -29,6 +29,26 @@ public class Controlador{
     }
 
     private void cicloNoche() {
+	for (Jugador j : lista) {
+	    j.setProteccion(false);
+	}
+	turnoProtector();
+	turnoVidente();
+	turnoLobos();
+	turnoBruja();
+
+	if (!fMuerto) {
+	    turnoFlautista();
+	}
+
+    resolverNoche();
+
+    //El metodo de arriba es para hacer todas las impresiones finales
+    
+}
+    }
+
+    private void turnoLobos() {
     }
 
     private void turnoProtector() {
