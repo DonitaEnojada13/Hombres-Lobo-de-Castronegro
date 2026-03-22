@@ -48,6 +48,8 @@ public class Controlador{
 				break;
 			}
 
+			mostrarEstadoJugadores();
+
 			System.out.println("\n ---- Inicia el Día ----");
 			cicloDia();
 			Informacion cicloDia = lista.contador();
@@ -248,6 +250,7 @@ public class Controlador{
 				if (sc.nextLine().trim().equalsIgnoreCase("s")) {
 					aCurar = victimaLobo;
 					this.victimaLobo = null; 
+					
 				}
 				
 			} else {
@@ -263,12 +266,14 @@ public class Controlador{
 						String nombre = pideNom();
 						aMatar = lista.obtenerPorNombre(nombre);
 					
-					if (aMatar == null) {
-						System.out.println("Ese nombre no existe.");
-					} else if (!aMatar.getVivo()) {
-						System.out.println("No puedes matar lo que ya esta muerto");
-						aMatar = null;
-					}
+						if (aMatar == null) {
+							System.out.println("Ese nombre no existe.");
+						} else if (!aMatar.getVivo()) {
+							System.out.println("No puedes matar lo que ya esta muerto");
+							aMatar = null;
+						}
+
+						this.victimaBruja = aMatar;
 					}
 				}
 			}
@@ -489,6 +494,20 @@ public class Controlador{
 		}
 		System.out.println("==========================");
 	}
+
+	public void mostrarEstadoJugadores() {
+        System.out.println("\n=== ESTADO ACTUAL DE LA ALDEA ===");
+        
+        for (Jugador j : lista) {
+            String estado = j.getVivo() ? "[VIVO]" : "[MUERTO]";
+            
+            String rol = j.getClass().getSimpleName();
+            
+            System.out.println(estado + " - " + j.getNombre() + " (" + rol + ")");
+        }
+        
+        System.out.println("=================================\n");
+    }
 
     private int pideNum(){
 			int numJugadores = 0;
