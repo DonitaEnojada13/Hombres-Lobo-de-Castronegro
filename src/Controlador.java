@@ -5,6 +5,7 @@ import java.util.Scanner;
 import java.util.Random;
 
 
+@SuppressWarnings("unused")
 public class Controlador{
 
     // En teoria, el mvc trabaja con el modelo, en este caso, este esta compuesto por
@@ -34,39 +35,39 @@ public class Controlador{
     }
 
     public void cicloDia() {
-	System.out.println("La ira del pueblo esta latente");
-    
-	Jugador elegido = null;
-	while (elegido == null) {
-	    System.out.println("Quien sufrira la ira del pueblo? (Escribe el nombre)");
-	    String nombre = pideNom();
-        
-	    elegido = lista.obtenerPorNombre(nombre);
-	    
-	    if (elegido == null || !elegido.getVivo()) {
-		System.out.println("Ese nombre no existe o ya esta muerto");
-		elegido = null;
-	    } else if (elegido.getRol() == 'T' && tontoDesc) {
-		System.out.println("Ya revelaron al tonto, no sean bobos");
-		elegido = null;
-	    }
-	}
-	
-	if (elegido.getRol() == 'T') {
-	    System.out.println("Tristemente es el mas tonto del pueblo, su vida es perdonada");
-	    System.out.println("Su voto ya no cuenta, es demasiado bobo");
-	    this.tontoDesc = true;
-	} else {
-	    elegido.setVivo(false);
-	    System.out.println(elegido.getNombre() + " fue linchado");
-        
-	    if (elegido.getRol() == 'C') {
-		muerteCazador();
-	    }
-	    if (elegido.getRol() == 'F') {
-		fMuerto = true;
-	    }
-	}
+		System.out.println("La ira del pueblo esta latente");
+		
+		Jugador elegido = null;
+		while (elegido == null) {
+			System.out.println("Quien sufrira la ira del pueblo? (Escribe el nombre)");
+			String nombre = pideNom();
+			
+			elegido = lista.obtenerPorNombre(nombre);
+			
+			if (elegido == null || !elegido.getVivo()) {
+			System.out.println("Ese nombre no existe o ya esta muerto");
+			elegido = null;
+			} else if (elegido.getRol() == 'T' && tontoDesc) {
+			System.out.println("Ya revelaron al tonto, no sean bobos");
+			elegido = null;
+			}
+		}
+		
+		if (elegido.getRol() == 'T') {
+			System.out.println("Tristemente es el mas tonto del pueblo, su vida es perdonada");
+			System.out.println("Su voto ya no cuenta, es demasiado bobo");
+			this.tontoDesc = true;
+		} else {
+			elegido.setVivo(false);
+			System.out.println(elegido.getNombre() + " fue linchado");
+			
+			if (elegido.getRol() == 'C') {
+			muerteCazador();
+			}
+			if (elegido.getRol() == 'F') {
+			fMuerto = true;
+			}
+		}
     }
 
     private void cicloNoche() {
@@ -88,246 +89,246 @@ public class Controlador{
     }
 
     private void resolverNoche() {
-	System.out.println("La noche se levanta y las consecuencias aparecen");
-	boolean huboMuertes = false;
-	
-	if (this.victimaLobo != null) {
-        
-	    if (this.victimaLobo.getProteccion()) {
-		System.out.println("La manada ataco, pero el protector fue mas rapido");
-	    } else {
-		this.victimaLobo.setVivo(false);
-		System.out.println("El aldeano " + victimaLobo.getNombre() + " fue devorado");
-		huboMuertes = true;
+		System.out.println("La noche se levanta y las consecuencias aparecen");
+		boolean huboMuertes = false;
+		
+		if (this.victimaLobo != null) {
+			
+			if (this.victimaLobo.getProteccion()) {
+			System.out.println("La manada ataco, pero el protector fue mas rapido");
+			} else {
+			this.victimaLobo.setVivo(false);
+			System.out.println("El aldeano " + victimaLobo.getNombre() + " fue devorado");
+			huboMuertes = true;
 
-		if (victimaLobo.getRol() == 'C') {
-		    muerteCazador();
+			if (victimaLobo.getRol() == 'C') {
+				muerteCazador();
+			}
+			
+			if (victimaLobo.getRol() == 'F')
+				fMuerto = true;;
+			}
 		}
-           
-		if (victimaLobo.getRol() == 'F')
-		    fMuerto = true;;
-	    }
-	}
 
-	if (this.victimaBruja != null) {
-	    if(this.victimaBruja.getVivo()) {
-		this.victimaBruja.setVivo(false);
-		System.out.println(victimaBruja.getNombre() + " murio por mano de la bruja");
-		huboMuertes = true;
+		if (this.victimaBruja != null) {
+			if(this.victimaBruja.getVivo()) {
+			this.victimaBruja.setVivo(false);
+			System.out.println(victimaBruja.getNombre() + " murio por mano de la bruja");
+			huboMuertes = true;
 
-	    if (victimaBruja.getRol() == 'C') {
-		muerteCazador();
-	    }
+			if (victimaBruja.getRol() == 'C') {
+			muerteCazador();
+			}
 
-	    if (victimaBruja.getRol() == 'F'){
-		fMuerto = true;
-	    }
-	} else {
-		System.out.println("Quedo doblemente muerto  " + victimaBruja.getNombre());
-	    }
-	}
+			if (victimaBruja.getRol() == 'F'){
+			fMuerto = true;
+			}
+		} else {
+			System.out.println("Quedo doblemente muerto  " + victimaBruja.getNombre());
+			}
+		}
 
-	if (!huboMuertes) {
-	    System.out.println("No hubo victimas, que raro");
-	}
-	
-	this.victimaLobo = null;
-	this.victimaBruja = null;
+		if (!huboMuertes) {
+			System.out.println("No hubo victimas, que raro");
+		}
+		
+		this.victimaLobo = null;
+		this.victimaBruja = null;
     }
 
     private void muerteCazador() {
-	System.out.println("El cazador fue atacado, pero no esperara la muerte con los brazos cruzados");
-	System.out.println("Levanta su arma y apunta a: (Escribe el nombre)");
-    
-	Jugador victimaCazador = null;
-	while (victimaCazador == null) {
-	    String nombre = pideNom();
-	    victimaCazador = lista.obtenerPorNombre(nombre);
-	    
-	    if (victimaCazador == null || !victimaCazador.getVivo()) {
-		System.out.println("Debes elegir a alguien que siga vivo. Intenta de nuevo:");
-		victimaCazador = null;
-	    }
-	}
+		System.out.println("El cazador fue atacado, pero no esperara la muerte con los brazos cruzados");
+		System.out.println("Levanta su arma y apunta a: (Escribe el nombre)");
+		
+		Jugador victimaCazador = null;
+		while (victimaCazador == null) {
+			String nombre = pideNom();
+			victimaCazador = lista.obtenerPorNombre(nombre);
+			
+			if (victimaCazador == null || !victimaCazador.getVivo()) {
+			System.out.println("Debes elegir a alguien que siga vivo. Intenta de nuevo:");
+			victimaCazador = null;
+			}
+		}
 
-	victimaCazador.setVivo(false);
-	System.out.println("Un sonido arrollador suena en el pueblo, " + victimaCazador.getNombre() + " ha muerto por el disparo del cazador.");
-	
-	if (victimaCazador.getRol() == 'F') fMuerto = true;
+		victimaCazador.setVivo(false);
+		System.out.println("Un sonido arrollador suena en el pueblo, " + victimaCazador.getNombre() + " ha muerto por el disparo del cazador.");
+		
+		if (victimaCazador.getRol() == 'F') fMuerto = true;
     }
 
     private void turnoFlautista() {
-	Jugador f = lista.rolVivo('F');
-	if (f != null){
-	Flautista flautista = (Flautista) f;
-	System.out.println(flautista.obtenerMensajeDespertar());
+		Jugador f = lista.rolVivo('F');
+		if (f != null){
+			Flautista flautista = (Flautista) f;
+			System.out.println(flautista.obtenerMensajeDespertar());
 
-	int cantidadHechizos = lista.getJugadores() / 5; 
-	if (cantidadHechizos < 1) cantidadHechizos = 1; //En teoria esto nunca pasa pero hay que tener cuidado, no?
+			int cantidadHechizos = lista.getJugadores() / 5; 
+			if (cantidadHechizos < 1) cantidadHechizos = 1; //En teoria esto nunca pasa pero hay que tener cuidado, no?
 
-	System.out.println("Puedes hechizar a " + cantidadHechizos + " jugadores esta noche.");
+			System.out.println("Puedes hechizar a " + cantidadHechizos + " jugadores esta noche.");
 
-	Jugador[] aHechizar = new Jugador[cantidadHechizos];
+			Jugador[] aHechizar = new Jugador[cantidadHechizos];
 
-	for (int i = 0; i < cantidadHechizos; i++) {
-	    Jugador elegido = null;
-	    while (elegido == null) {
-		System.out.println("El aldeano numero " + (i + 1) + " sucumbira ante tu hechizo, di su nombre");
-		String nombre = pideNom();
-		elegido = lista.obtenerPorNombre(nombre);
+			for (int i = 0; i < cantidadHechizos; i++) {
+				Jugador elegido = null;
+				while (elegido == null) {
+				System.out.println("El aldeano numero " + (i + 1) + " sucumbira ante tu hechizo, di su nombre");
+				String nombre = pideNom();
+				elegido = lista.obtenerPorNombre(nombre);
 
-		if (elegido == null) {
-		    System.out.println("Ese nombre no existe.");
-		} else if (elegido instanceof Flautista) {
-		    System.out.println("No puedes hechizarte a ti mismo, espabila.");
-		    elegido = null;
-		} else if (!elegido.getVivo()) {
-		    System.out.println("No puedes hechizar a los muertos, bobolon");
-		    elegido = null;
+				if (elegido == null) {
+					System.out.println("Ese nombre no existe.");
+				} else if (elegido instanceof Flautista) {
+					System.out.println("No puedes hechizarte a ti mismo, espabila.");
+					elegido = null;
+				} else if (!elegido.getVivo()) {
+					System.out.println("No puedes hechizar a los muertos, bobolon");
+					elegido = null;
+				}
+				}
+				aHechizar[i] = elegido;
+			}
+			System.out.println(flautista.accionNocturna(aHechizar));
 		}
-	    }
-	    aHechizar[i] = elegido;
-	}
-	System.out.println(flautista.accionNocturna(aHechizar));
-	}
     }
     
     
     private void turnoBruja() {
 	
-	Jugador j = lista.rolVivo('B');
-	if (j != null) {
-	    Bruja b = (Bruja) j;
-	    System.out.println(b.obtenerMensajeDespertar());
-	    
-	    Jugador aCurar = null;
-	    Jugador aMatar = null;
-
-	    if (b.hasCura()) {
-		if (victimaLobo != null) {
-		    System.out.println("La victima de los lobos fue " + victimaLobo.getNombre());
-		    System.out.println("¿Curaras al aldeano moribundo? (s/n)");
-
-		    if (sc.nextLine().trim().equalsIgnoreCase("s")) {
-			aCurar = victimaLobo;
-			this.victimaLobo = null; 
-		    }
-		    
-		} else {
-		    System.out.println("No hubo victimas esta noche");
-		}
-	    }
-	    
-	    if (b.hasMata()) {
-		System.out.println("Usaras tu pocion de muerte? (s/n)");
-		if (sc.nextLine().trim().equalsIgnoreCase("s")) {
-		    while (aMatar == null) {
-			System.out.println("A quien mataras?");
-			String nombre = pideNom();
-			aMatar = lista.obtenerPorNombre(nombre);
+		Jugador j = lista.rolVivo('B');
+		if (j != null) {
+			Bruja b = (Bruja) j;
+			System.out.println(b.obtenerMensajeDespertar());
 			
-			if (aMatar == null) {
-			    System.out.println("Ese nombre no existe.");
-			} else if (!aMatar.getVivo()) {
-			    System.out.println("No puedes matar lo que ya esta muerto");
-			    aMatar = null;
-			}
-		    }
-		}
-	    }
+			Jugador aCurar = null;
+			Jugador aMatar = null;
 
-	    String resultadoAccion = b.accionNocturna(aCurar, aMatar);
-	    System.out.println(resultadoAccion);
-	}
+			if (b.hasCura()) {
+			if (victimaLobo != null) {
+				System.out.println("La victima de los lobos fue " + victimaLobo.getNombre());
+				System.out.println("¿Curaras al aldeano moribundo? (s/n)");
+
+				if (sc.nextLine().trim().equalsIgnoreCase("s")) {
+					aCurar = victimaLobo;
+					this.victimaLobo = null; 
+				}
+				
+			} else {
+				System.out.println("No hubo victimas esta noche");
+			}
+			}
+			
+			if (b.hasMata()) {
+				System.out.println("Usaras tu pocion de muerte? (s/n)");
+				if (sc.nextLine().trim().equalsIgnoreCase("s")) {
+					while (aMatar == null) {
+						System.out.println("A quien mataras?");
+						String nombre = pideNom();
+						aMatar = lista.obtenerPorNombre(nombre);
+					
+					if (aMatar == null) {
+						System.out.println("Ese nombre no existe.");
+					} else if (!aMatar.getVivo()) {
+						System.out.println("No puedes matar lo que ya esta muerto");
+						aMatar = null;
+					}
+					}
+				}
+			}
+
+			String resultadoAccion = b.accionNocturna(aCurar, aMatar);
+			System.out.println(resultadoAccion);
+		}
     }
     
 
     private void turnoLobos() {
-	Jugador l = lista.rolVivo('L');
+		Jugador l = lista.rolVivo('L');
 
-	if (l != null){
-	    Lobo lobo = (Lobo) l;
-	    System.out.println(lobo.obtenerMensajeDespertar());
+		if (l != null){
+			Lobo lobo = (Lobo) l;
+			System.out.println(lobo.obtenerMensajeDespertar());
 
-	    Jugador elegido = null;
+			Jugador elegido = null;
 
-	    while (elegido == null) {
-		System.out.println("La manada de lobos ha elegido una victima");
+			while (elegido == null) {
+				System.out.println("La manada de lobos ha elegido una victima");
 
-		String nombre = pideNom();
-		elegido = lista.obtenerPorNombre(nombre);
+				String nombre = pideNom();
+				elegido = lista.obtenerPorNombre(nombre);
 
-		if (elegido == null) {
-		    System.out.println("Ese nombre no existe en la aldea.");
-		} else if (elegido instanceof Lobo) {
-		    System.out.println("Por que atacar a un lobo cuando hay aldeanos sabrosos?");
-		    elegido = null;
-		} else if (!elegido.getVivo()) {
-		    System.out.println("Los muertos no alimentaran a la manada, prueba otra vez");
-		    elegido = null;
+				if (elegido == null) {
+					System.out.println("Ese nombre no existe en la aldea.");
+				} else if (elegido instanceof Lobo) {
+					System.out.println("Por que atacar a un lobo cuando hay aldeanos sabrosos?");
+					elegido = null;
+				} else if (!elegido.getVivo()) {
+					System.out.println("Los muertos no alimentaran a la manada, prueba otra vez");
+					elegido = null;
+				}
+			}
+			this.victimaLobo = elegido;
+			System.out.println("La presa ha sido seleccionada");
 		}
-	    }
-	    this.victimaLobo = elegido;
-	    System.out.println("La presa ha sido seleccionada");
-	}
     }
     
     private void turnoProtector() {
-	Jugador j = lista.rolVivo('P');
-	if (j != null){
-	    Protector p = (Protector) j;
-	    System.out.println(p.obtenerMensajeDespertar());
+		Jugador j = lista.rolVivo('P');
+		if (j != null){
+			Protector p = (Protector) j;
+			System.out.println(p.obtenerMensajeDespertar());
 
-	    Jugador protegido = null;
-	    
-	    while(protegido == null){
-		String pJugador = pideNom();
-		protegido = lista.obtenerPorNombre(pJugador);
-	       
-		if(protegido == null) {
-		    System.out.println("Ese nombre no existe en la aldea. Inténtalo de nuevo.");
-		} else if (protegido == p.getFueProtegido()) {
-		    System.out.println("No puedes proteger a la misma persona dos noches seguidas.");
-		    protegido = null;
+			Jugador protegido = null;
+			
+			while(protegido == null){
+				String pJugador = pideNom();
+				protegido = lista.obtenerPorNombre(pJugador);
+				
+				if(protegido == null) {
+					System.out.println("Ese nombre no existe en la aldea. Inténtalo de nuevo.");
+				} else if (protegido == p.getFueProtegido()) {
+					System.out.println("No puedes proteger a la misma persona dos noches seguidas.");
+					protegido = null;
+				}
+			}
+
+			String resultado = p.accionNocturna(protegido);
+			System.out.println(resultado);
+			
 		}
-	    }
-
-	    String resultado = p.accionNocturna(protegido);
-	    System.out.println(resultado);
-	    
-	}
     }
 
     private void turnoVidente() {
-	Jugador j = lista.rolVivo('V');
+		Jugador j = lista.rolVivo('V');
 
-	if(j != null){
-	    Vidente v = (Vidente) j;
-	    System.out.println(v.obtenerMensajeDespertar());
-	    
-	    Jugador objetivo = null;
+		if(j != null){
+			Vidente v = (Vidente) j;
+			System.out.println(v.obtenerMensajeDespertar());
+			
+			Jugador objetivo = null;
 
-	    while(objetivo == null){
-		String nJugador = pideNom();
-		objetivo = lista.obtenerPorNombre(nJugador);
-		
-		if(objetivo == null){
-		    System.out.println("Ese nombre no existe en la aldea. Inténtalo de nuevo.");
+			while(objetivo == null){
+				String nJugador = pideNom();
+				objetivo = lista.obtenerPorNombre(nJugador);
+				
+				if(objetivo == null){
+					System.out.println("Ese nombre no existe en la aldea. Inténtalo de nuevo.");
+				}
+			}
+			String rolRevel = v.accionNocturna(objetivo);
+			System.out.println(rolRevel);
 		}
-	    }
-		String rolRevel = v.accionNocturna(objetivo);
-		System.out.println(rolRevel);
-	}
     }
 
     private int estadoDeJuego(Informacion c) {
-	if (c.getHechi() == c.getVivos()-1 && c.getFlautistaEstado())
-	    return 2;
-	if (c.getLobos() >= c.getHumanos())
-	    return 1;
-	if (c.getLobos() == 0 && !c.getFlautistaEstado())
-	    return 3;
-	return 0;
+		if (c.getHechi() == c.getVivos()-1 && c.getFlautistaEstado())
+			return 2;
+		if (c.getLobos() >= c.getHumanos())
+			return 1;
+		if (c.getLobos() == 0 && !c.getFlautistaEstado())
+			return 3;
+		return 0;
     }
     
     private void armarJuego(int numJugadores) {
