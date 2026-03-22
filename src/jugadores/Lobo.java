@@ -12,14 +12,14 @@ public class Lobo extends Jugador implements AccionDeNoche{
     }
 
     @Override
-    public void accionNocturna(Jugador... objetivos){
+    public String accionNocturna(Jugador... objetivos){
 
-        if(objetivos == null || objetivos.length == 0) return;
+        if(objetivos == null || objetivos.length == 0) return "No se seleccionó a nadie";
  
         for(Jugador asesinados : objetivos){
                 mata(asesinados);
         }    
-	    return;
+	    return "Se elimino al jugador";
     }
 
 
