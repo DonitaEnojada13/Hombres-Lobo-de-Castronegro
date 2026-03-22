@@ -455,8 +455,12 @@ public class Controlador{
 			System.out.println("Ingresa el nombre del jugador");
 			nombre = sc.nextLine().trim();
 			
-			if(nombre.isEmpty())
-			System.out.println("Aqui no aceptamos nombres vacios, bobo");
+			if(nombre.isEmpty()){
+				System.out.println("Aqui no aceptamos nombres vacios, bobo");
+			}else if(lista.obtenerPorNombre(nombre) != null){
+				System.out.println("Ese nombre ya esta en la Aldea, ingresa otro plox");
+				nombre = "";
+			}
 		}
 		return nombre;
     }
