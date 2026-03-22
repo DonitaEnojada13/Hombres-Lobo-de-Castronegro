@@ -28,10 +28,10 @@ public class Controlador{
 		tontoDesc = false;
     }
 
-   
     public void empiezaPartida() {
 		int numero = pideNum();
 		armarJuego(numero);	
+		mostrarRoles();
     }
 
 	public void juego(){
@@ -464,6 +464,15 @@ public class Controlador{
 		}
 		return nombre;
     }
+
+	private void mostrarRoles(){
+		System.out.println("\n ==== ROLES ASIGNADOS ====");
+		for(Jugador j : lista){
+				String nombreRol = j.getClass().getSimpleName();
+				System.out.println("- 	" + j.getNombre() + "tiene el rol de: " + nombreRol );
+		}
+		System.out.println("==========================");
+	}
 
     private int pideNum(){
 			int numJugadores = 0;
