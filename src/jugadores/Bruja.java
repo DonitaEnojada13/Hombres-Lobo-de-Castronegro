@@ -35,62 +35,61 @@ public class Bruja extends Jugador implements AccionDeNoche {
 		return;
     }
 
-	@Override
-	public String obtenerMensajeDespertar(){
-		return "La bruja despierta y puede curar o matar a alguién";
+    @Override
+    public String obtenerMensajeDespertar(){
+	return "La bruja despierta y puede curar o matar a alguién";
+    }
+
+    @Override
+    public String accionNocturna(Jugador... objetivos){
+	String resultado = "";
+	if (objetivos.length > 0 && objetivos[0] != null) {
+	    if (hasCura()) {
+		cura(objetivos[0]);
+		resultado += "Se ha usado la poción de vida en " + objetivos[0].getNombre() + ". ";
+	    }
 	}
-
-	@Override
-	public String accionNocturna(Jugador... objetivos){
-		if(objetivos.length > 0){
-			Jugador aCurar = objetivos[0];
-
-			if(aCurar != null && hasCura()){
-				cura(aCurar);
-			}
-
-			return "Se ha curado al jugador";
-		}
-
-		if(objetivos.length > 1){
-			Jugador aMatar = objetivos[1];
-			
-			if(aMatar != null && hasMata()){
-				mata(aMatar);
-			}
-
-			return "Se ha matado al jugador";
-		}
-
-		return "No se realizó ninguna acción";
+	
+	if (objetivos.length > 1 && objetivos[1] != null) {
+	    if (hasMata()) {
+		mata(objetivos[1]);
+		resultado += "Se ha usado la poción de muerte en " + objetivos[1].getNombre() + ".";
+	    }
 	}
+	
+	if (resultado.equals("")) {
+	    return "La bruja no ha realizado ninguna acción esta noche.";
+	}
+	
+	return resultado;
+    }
 
 	
     private void cura(Jugador herido){
-		if (herido == null)
-			throw new IllegalArgumentException("El jugador debe de existir");
-		if(!hasCura() || pociones <= 0)
-			return;
-		
-		if (!herido.getVivo()){
-			herido.setVivo(true);
-			setpCura(false);
-			pociones--;
-		}
+	if (herido == null)
+	    throw new IllegalArgumentException("El jugador debe de existir");
+	if(!hasCura() || pociones <= 0)
+	    return;
+	
+	if (!herido.getVivo()){
+	    herido.setVivo(true);
+	    setpCura(false);
+	    pociones--;
+	}
     }
 
     private void mata(Jugador objetivo){
 	
-		if (objetivo == null)
-			throw new IllegalArgumentException("El jugador debe de existir");
-		if(!hasMata() ||  pociones <= 0)
-			return;
-
-		if(objetivo.getVivo() == true){
-			objetivo.setVivo(false);
-			setpMata(false);
-			pociones--;
-		}
+	if (objetivo == null)
+	    throw new IllegalArgumentException("El jugador debe de existir");
+	if(!hasMata() ||  pociones <= 0)
+	    return;
+	
+	if(objetivo.getVivo() == true){
+	    objetivo.setVivo(false);
+	    setpMata(false);
+	    pociones--;
+	}
     }
     
 

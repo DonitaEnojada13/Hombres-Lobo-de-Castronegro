@@ -10,31 +10,31 @@ public class Flautista extends Jugador implements AccionDeNoche{
 		return "El flautista despierta y hechiza a los aldeanos ";
 	}
 
-	@Override
+    @Override
     public String accionNocturna(Jugador... objetivos){
-		
-		if(objetivos == null || objetivos.length == 0) return "No seleccionaste a Nadie";
-
-		for(Jugador hechizado : objetivos){
-			hechizar(hechizado);
-		}
-
-		return "Se han hechizado a los jugadores";
-
+	    if(objetivos == null || objetivos.length == 0)
+		return "No seleccionaste a Nadie";
+	    int hechi = 0;
+	    
+	    for(Jugador hechizado : objetivos){
+		if (hechizado != null)
+		    if(hechizar(hechizado))
+			hechi++;
+	    }
+	    return "Tu musica cautivo a " + hechi + " aldaenos";
     }
-    private void hechizar(Jugador objetivo){
-		if (objetivo == null)
-			throw new IllegalArgumentException("El jugador debe de existir");
-		if (objetivo instanceof Flautista){
-			System.out.println("No te puedes hechizar a ti mismo, espabila");
-			return;
-		}
-		
-		if(!objetivo.getHechizado()){
-			objetivo.setHechizado(true);
-		} else {
-			System.out.println("Pero la musica ya sonaba en su mente...");
-			return;
-		}
+    private boolean hechizar(Jugador objetivo) {
+        if (objetivo == null)
+	    throw new IllegalArgumentException("El objetivo debe de existir");
+	
+	if(!objetivo.getVivo() || objetivo instanceof Flautista) {
+            return false; // No olvidar que puede pasar esto, el usuario es raro
+        }
+
+        if (!objetivo.getHechizado()) {
+            objetivo.setHechizado(true);
+            return true; 
+        }
+	return false;
     }
 }

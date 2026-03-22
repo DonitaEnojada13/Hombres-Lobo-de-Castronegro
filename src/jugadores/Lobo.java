@@ -26,19 +26,15 @@ public class Lobo extends Jugador implements AccionDeNoche{
 
 
     private void mata(Jugador presa){
-        if (presa == null)
+	if (presa == null)
             throw new IllegalArgumentException("El jugador debe de existir");
-        if (presa instanceof Lobo)
-            throw new IllegalArgumentException("Los lobos no pueden asesinar a otros lobos");
-        if(!presa.getVivo())
-            throw new IllegalArgumentException("El jugador debe de estár vivo");
 
-        if(presa.getProteccion()){
-            System.out.println("El jugador " + presa.getNombre() + " esta protegido");
+	if(presa.getProteccion()){
+            System.out.println("La vida del aldeano " + presa.getNombre() + " estaba protegida, los dientes no perforaron la carne");
             return;
         }
-
-        presa.setVivo(false);
+	
+	presa.setVivo(false);
 	}
 
     
