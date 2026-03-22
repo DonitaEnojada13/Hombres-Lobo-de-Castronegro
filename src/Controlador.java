@@ -371,7 +371,7 @@ public class Controlador{
 		desArreglo(rolesAleatorios);
 
 		for(int i = 0; i < rolesAleatorios.length; i++) {
-			String s = pideNom();
+			String s = pideNomRegistro();
 			char r = rolesAleatorios[i];
 			lista.meteJugador(creaJugador(r,s));
 		}
@@ -457,6 +457,22 @@ public class Controlador{
 			
 			if(nombre.isEmpty()){
 				System.out.println("Aqui no aceptamos nombres vacios, bobo");
+			}
+		}
+		return nombre;
+    }
+
+	private String pideNomRegistro(){
+	// Un while para pedir nombres
+		String nombre = "";
+
+		// Mientras el nombre sea vacio que se haga esta accion
+		while(nombre.isEmpty()){    
+			System.out.println("Ingresa el nombre del jugador");
+			nombre = sc.nextLine().trim();
+			
+			if(nombre.isEmpty()){
+				System.out.println("Aqui no aceptamos nombres vacios, bobo");
 			}else if(lista.obtenerPorNombre(nombre) != null){
 				System.out.println("Ese nombre ya esta en la Aldea, ingresa otro plox");
 				nombre = "";
@@ -469,7 +485,7 @@ public class Controlador{
 		System.out.println("\n ==== ROLES ASIGNADOS ====");
 		for(Jugador j : lista){
 				String nombreRol = j.getClass().getSimpleName();
-				System.out.println("- 	" + j.getNombre() + "tiene el rol de: " + nombreRol );
+				System.out.println("- " + j.getNombre() + " tiene el rol de: " + nombreRol );
 		}
 		System.out.println("==========================");
 	}
