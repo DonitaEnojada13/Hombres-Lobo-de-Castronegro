@@ -538,6 +538,7 @@ public class Controlador{
 
 		return numJugadores;
     }
+	
     private boolean pideSiNo() {
         String respuesta = "";
         
