@@ -34,6 +34,43 @@ public class Controlador{
 		armarJuego(numero);	
     }
 
+	public void juego(){
+		boolean juegoTerminado = false;
+		
+		while(!juegoTerminado){
+			System.out.println("\n ---- Cae la noche ----");
+			cicloNoche();
+			Informacion infoNoche = lista.contador();
+			int estadoNoche = estadoDeJuego(infoNoche);
+
+			if(estadoNoche != 0){
+				anuncioGanadores(estadoNoche);
+				break;
+			}
+
+			System.out.println("\n ---- Inicia el Día ----");
+			cicloDia();
+			Informacion cicloDia = lista.contador();
+			int estadoDia = estadoDeJuego(cicloDia);
+			if(estadoDia != 0){
+				anuncioGanadores(estadoDia);
+				break;
+			}
+		}
+
+	}
+
+	private void anuncioGanadores(int estado){
+		System.out.println("===== FIN DE LA PARTIDA =====");
+		if(estado == 1){
+			System.out.println("LOS THERIAN HAN GANADO\n Han superado en numero a los humanos");
+		}else if(estado == 2){
+			System.out.println("EL FLAUTISTA HA GANADO\n Logró hechizar a todo el pueblo, todo un fockboy");
+		}else if(estado == 3){
+			System.out.println("LOS ALDEANOS HAN GANADO\n Lograron ponerse de acuerdo y por ende ganaron");
+		}
+	}
+
     public void cicloDia() {
 		System.out.println("La ira del pueblo esta latente");
 		
@@ -193,7 +230,6 @@ public class Controlador{
 		}
     }
     
-    
     private void turnoBruja() {
 	
 		Jugador j = lista.rolVivo('B');
@@ -242,7 +278,6 @@ public class Controlador{
 		}
     }
     
-
     private void turnoLobos() {
 		Jugador l = lista.rolVivo('L');
 
@@ -370,7 +405,7 @@ public class Controlador{
     // me puse a investigar y encontre un algoritmo que permite pseudo-desorden. Intentare
     // explicarlo de la manera mas campechana posible porque esto es un poco raro
 
-    
+
     // Fisher-Yates Shuffle
     private void desArreglo(char[] entrada){
 		Random rd = new Random();
