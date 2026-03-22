@@ -11,5 +11,7 @@ public class Main{
         nuevoJuego.empiezaPartida();
 
         nuevoJuego.juego();
+
+        System.out.println("===============================================");
     }
 }

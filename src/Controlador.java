@@ -247,7 +247,7 @@ public class Controlador{
 				System.out.println("La victima de los lobos fue " + victimaLobo.getNombre());
 				System.out.println("¿Curaras al aldeano moribundo? (s/n)");
 
-				if (sc.nextLine().trim().equalsIgnoreCase("s")) {
+				if (pideSiNo()) {
 					aCurar = victimaLobo;
 					this.victimaLobo = null; 
 					
@@ -260,7 +260,7 @@ public class Controlador{
 			
 			if (b.hasMata()) {
 				System.out.println("Usaras tu pocion de muerte? (s/n)");
-				if (sc.nextLine().trim().equalsIgnoreCase("s")) {
+				if (pideSiNo()) {
 					while (aMatar == null) {
 						System.out.println("A quien mataras?");
 						String nombre = pideNom();
@@ -327,7 +327,11 @@ public class Controlador{
 				
 				if(protegido == null) {
 					System.out.println("Ese nombre no existe en la aldea. Inténtalo de nuevo.");
-				} else if (protegido == p.getFueProtegido()) {
+				}else if(!protegido.getVivo()) {
+                    System.out.println("Ese jugador ya está muerto. No puedes proteger a un fantasma.");
+                    protegido = null;
+				
+				}else if (protegido == p.getFueProtegido()) {
 					System.out.println("No puedes proteger a la misma persona dos noches seguidas.");
 					protegido = null;
 				}
@@ -534,4 +538,17 @@ public class Controlador{
 
 		return numJugadores;
     }
+    private boolean pideSiNo() {
+        String respuesta = "";
+        
+        while (!respuesta.equals("s") && !respuesta.equals("n")) {
+            respuesta = sc.nextLine().trim().toLowerCase();
+            
+            if (!respuesta.equals("s") && !respuesta.equals("n")) {
+                System.out.println("Opción inválida. Por favor, escribe estrictamente 's' para sí, o 'n' para no:");
+            }
+        }
+        return respuesta.equals("s");
+    }
+
 }

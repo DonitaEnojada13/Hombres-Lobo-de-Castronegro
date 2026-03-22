@@ -21,7 +21,7 @@ public class Flautista extends Jugador implements AccionDeNoche{
 		    if(hechizar(hechizado))
 			hechi++;
 	    }
-	    return "Tu musica cautivo a " + hechi + " aldaenos";
+	    return "Tu musica cautivo a " + hechi + " aldeanos";
     }
     private boolean hechizar(Jugador objetivo) {
         if (objetivo == null)
