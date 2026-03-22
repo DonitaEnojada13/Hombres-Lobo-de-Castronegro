@@ -11,15 +11,15 @@ public class Flautista extends Jugador implements AccionDeNoche{
 	}
 
 	@Override
-    public void accionNocturna(Jugador... objetivos){
+    public String accionNocturna(Jugador... objetivos){
 		
-		if(objetivos == null || objetivos.length == 0) return;
+		if(objetivos == null || objetivos.length == 0) return "No seleccionaste a Nadie";
 
 		for(Jugador hechizado : objetivos){
 			hechizar(hechizado);
 		}
 
-		return;
+		return "Se han hechizado a los jugadores";
 
     }
     private void hechizar(Jugador objetivo){

@@ -41,13 +41,15 @@ public class Bruja extends Jugador implements AccionDeNoche {
 	}
 
 	@Override
-	public void accionNocturna(Jugador... objetivos){
+	public String accionNocturna(Jugador... objetivos){
 		if(objetivos.length > 0){
 			Jugador aCurar = objetivos[0];
 
 			if(aCurar != null && hasCura()){
 				cura(aCurar);
 			}
+
+			return "Se ha curado al jugador";
 		}
 
 		if(objetivos.length > 1){
@@ -56,7 +58,11 @@ public class Bruja extends Jugador implements AccionDeNoche {
 			if(aMatar != null && hasMata()){
 				mata(aMatar);
 			}
+
+			return "Se ha matado al jugador";
 		}
+
+		return "No se realizó ninguna acción";
 	}
 
 	
