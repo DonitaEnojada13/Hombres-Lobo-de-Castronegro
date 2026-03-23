@@ -289,7 +289,7 @@ public class Controlador{
 		if (l != null){
 			Lobo lobo = (Lobo) l;
 			System.out.println(lobo.obtenerMensajeDespertar());
-			System.out.println("La manada de lobos ha elegido una victima");
+			System.out.println("La manada de lobos elegirá una victima");
 
 			Jugador elegido = null;
 
