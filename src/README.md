@@ -10,7 +10,8 @@
 
 El presente proyecto constituye una implementación en el lenguaje de programación Java del juego de mesa "Hombres Lobo de Castronegro". El sistema fue diseñado con el propósito principal de servir como una herramienta de asistencia para el Narrador, optimizando el control y el seguimiento del estado de la partida, la gestión de los turnos (nocturnos y diurnos) y la validación de las acciones correspondientes a los diferentes roles involucrados.
 
-Las mecánicas operativas y las reglas del juego integradas en el código se apegan estrictamente a las especificaciones detalladas en la documentación oficial provista para esta evaluación. Es importante mencionar que esta aplicación fue desarrollada para ser exclusiva de la terminal, por lo que carece de una UI.
+Las mecánicas operativas y las reglas del juego integradas en el código sea las especificaciones que nos dieron en el PDF.
+Es importante mencionar que esta aplicación fue desarrollada para ser exclusiva de la terminal, por lo que carece de una UI.
 
 ## 2. Desarrollo y Gestión del Código
 
