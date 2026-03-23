@@ -289,11 +289,12 @@ public class Controlador{
 		if (l != null){
 			Lobo lobo = (Lobo) l;
 			System.out.println(lobo.obtenerMensajeDespertar());
+			System.out.println("La manada de lobos ha elegido una victima");
 
 			Jugador elegido = null;
 
 			while (elegido == null) {
-				System.out.println("La manada de lobos ha elegido una victima");
+				
 
 				String nombre = pideNom();
 				elegido = lista.obtenerPorNombre(nombre);
@@ -538,7 +539,7 @@ public class Controlador{
 
 		return numJugadores;
     }
-	
+
     private boolean pideSiNo() {
         String respuesta = "";
         
