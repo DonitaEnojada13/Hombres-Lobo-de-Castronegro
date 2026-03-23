@@ -212,7 +212,7 @@ public class Controlador{
 			for (int i = 0; i < cantidadHechizos; i++) {
 				Jugador elegido = null;
 				while (elegido == null) {
-				System.out.println("El aldeano numero " + (i + 1) + " sucumbira ante tu hechizo, di su nombre");
+				System.out.println("El aldeano sucumbira ante tu hechizo, di su nombre");
 				String nombre = pideNom();
 				elegido = lista.obtenerPorNombre(nombre);
 
