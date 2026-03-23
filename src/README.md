@@ -30,3 +30,5 @@ Ejecute el siguiente comando para compilar la clase principal junto con la total
 
 ```bash
 javac Main.java acciones/*.java estructuras/*.java jugadores/*.java
+
+java Main
