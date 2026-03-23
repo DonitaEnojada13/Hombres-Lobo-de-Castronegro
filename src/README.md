@@ -1,24 +1,31 @@
-========= ENTREGA DEL PROYECTO DE HOMBRES NEGRO DE CASTRONEGRO ===========
-Integrantes del equipo:
-  1.- Cántero Zavaléta Héctor
-  2.- Sánchez Girón Yael Adrian
+# Proyecto Final: Hombres Lobo de Castronegro
 
-Esta es una implementacion del juego de Hombres Negro de Castonegro, el cual me voy a saltar la explciación 
-porque ya está en el PDF que nos enviarón.
-El programa intenta ser una ayuda al narrador para que tenga un control de como se va desenvolviendo el juego 
-El juego se realizó pensando que será un programa que se ejecutará en terminal, dicho esto, no hay alguna implementación 
-de alguna UI jejeje (También porque no nos alcanzó el tiempo para diseñar la interfaz y aplicar alguna herramienta de FrontEnd,
-porque las herramientas "nativas" de Java, la verdad es que no son intuitivas y no nos permiten diseñar un programa estéticamente bonito)
-Dicho esto, uno de los problemas más grandes que tuvimos como equipo fue la implementación de herramientas como GIT, ya que prácticamente
-fue nuestra primera vez que utilizamos este tipo de herrameintas pero una vez que vimos como era el workflow de esta herramienta 
-la verdad que hizo más ameno el como avanzábamos con el proyecto.
+**Integrantes del equipo:**
+* Cántero Zavaleta, Héctor
+* Sánchez Girón, Yael Adrian
 
-Para compilar el código solo basta con utilizar el comando de
-javac Main.java acciones/*.java estructuras/*.java jugadores/*.java 
+---
 
-Todo desde la carpeta de src.
+## 1. Descripción del Proyecto
 
-Recordatorio de contar con una version de java version "25.0.1"
+El presente proyecto constituye una implementación en el lenguaje de programación Java del juego de mesa "Hombres Lobo de Castronegro". El sistema fue diseñado con el propósito principal de servir como una herramienta de asistencia para el Narrador, optimizando el control y el seguimiento del estado de la partida, la gestión de los turnos (nocturnos y diurnos) y la validación de las acciones correspondientes a los diferentes roles involucrados.
 
-y ya, es todo :D 
+Las mecánicas operativas y las reglas del juego integradas en el código se apegan estrictamente a las especificaciones detalladas en la documentación oficial provista para esta evaluación. Es importante mencionar que esta aplicación fue desarrollada para ser exclusiva de la terminal, por lo que carece de una UI.
 
+## 2. Desarrollo y Gestión del Código
+
+Durante el ciclo de desarrollo de este proyecto, el principal desafío técnico consistió en la integración y adopción de Git como sistema de control de versiones. Al ser nuestra primera vez con dicha tecnología, hubo una gran curva de aprendizaje. Sin embargo, el dominio del workflow permitió optimizar sustancialmente la coordinación del equipo, el historial de los cambios y la administración integral del código fuente.
+
+## 3. Requisitos del Sistema
+
+Para garantizar la correcta compilación y ejecución del sistema, el entorno debe cumplir con el siguiente requisito:
+* **Java Development Kit (JDK)**,  en su versión **25.0.1**.
+
+## 4. Instrucciones de Compilación y Ejecución
+
+Para inicializar el sistema, es necesario ejecutar las siguientes instrucciones desde la interfaz de línea de comandos asegurándose de estar ubicado en el directorio raíz del código fuente (`src`).
+
+Ejecute el siguiente comando para compilar la clase principal junto con la totalidad de sus paquetes dependientes:
+
+```bash
+javac Main.java acciones/*.java estructuras/*.java jugadores/*.java
